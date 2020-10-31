@@ -6,7 +6,34 @@
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Blog Post</legend>
-                    {{ form|crispy }}
+                    
+
+<div id="div_id_title" class="form-group"> <label for="id_title" class=" requiredField">
+                Title<span class="asteriskField">*</span> </label> <div class=""> <input type="text" name="title" class="form-control textinput textInput form-control" maxlength="100" required="" id="id_title"> </div> </div> <div id="div_id_content" class="form-group"> <label for="id_content" class=" requiredField">
+                Content<span class="asteriskField">*</span> </label> <div class=""> <textarea name="content" cols="40" rows="10" class="form-control textarea form-control" required="" id="speechToText" placeholder="Speak Something" onclick="record()"></textarea> </div> </div> <div id="div_id_weight" class="form-group"> <label for="id_weight" class=" requiredField">
+                Weight<span class="asteriskField">*</span> </label> <div class=""> <select name="weight" class="form-control select form-control" maxlength="100" id="id_weight"> <option value="light" selected="">till 30</option> <option value="medium">from 30 to 70</option> <option value="heavy">above 70</option>
+
+</select> </div> </div> <div id="div_id_pregnant" class="form-group"> <label for="id_pregnant" class=" requiredField">
+                Pregnant<span class="asteriskField">*</span> </label> <div class=""> <select name="pregnant" class="form-control select form-control" maxlength="10" id="id_pregnant"> <option value="yes">Yes</option> <option value="no" selected="">No</option>
+
+</select> </div> </div> <div id="div_id_anemia" class="form-group"> <label for="id_anemia" class=" requiredField">
+                Anemia<span class="asteriskField">*</span> </label> <div class=""> <select name="anemia" class="form-control select form-control" maxlength="10" id="id_anemia"> <option value="yes">Yes</option> <option value="no" selected="">No</option>
+
+</select> </div> </div> <div id="div_id_infectious_diseases" class="form-group"> <label for="id_infectious_diseases" class=" requiredField">
+                Infectious diseases(TB/HIV/Malaria/Hepatitis)<span class="asteriskField">*</span> </label> <div class=""> <select name="infectious_diseases" class="form-control select form-control" maxlength="10" id="id_infectious_diseases"> <option value="yes">Yes</option> <option value="no" selected="">No</option>
+
+</select> </div> </div> <div id="div_id_doctors_prescription" class="form-group"> <label for="id_doctors_prescription" class=" requiredField">
+                Doctors prescription<span class="asteriskField">*</span> </label> <div class=""> <input type="file" name="doctors_prescription" accept="image/*" class="clearablefileinput form-control-file" id="id_doctors_prescription"> </div> </div> <div id="div_id_days" class="form-group"> <label for="id_days" class=" requiredField">
+                Are you COVID free for 14 days?<span class="asteriskField">*</span> </label> <div class=""> <select name="days" class="form-control select form-control" maxlength="10" id="id_days"> <option value="yes">Yes</option> <option value="no">No</option>
+
+</select> </div> </div> <div id="div_id_test" class="form-group"> <label for="id_test" class=" requiredField">
+                Did you take a follow up COVID test?<span class="asteriskField">*</span> </label> <div class=""> <select name="test" class="form-control select form-control" maxlength="10" id="id_test"> <option value="yes" selected="">Yes</option> <option value="no">No</option>
+
+</select> </div> </div> <div id="div_id_covid" class="form-group"> <label for="id_covid" class=" requiredField">
+                Was your COVID test positive?<span class="asteriskField">*</span> </label> <div class=""> <select name="covid" class="form-control select form-control" maxlength="10" id="id_covid"> <option value="yes" selected="">Yes</option> <option value="no">No</option>
+
+</select> </div> </div>
+
                 </fieldset>
                 <div class="form-group">
                     <button class="btn btn-outline-info" type="submit">Post</button>

@@ -14,7 +14,106 @@
             {% endif %}
             </div>
             <h2 class="article-title">{{ post.title }}</h2>
+            <h4>Donor's Info</h4>
             <p class="article-content">{{ post.content }}</p>
+
+            {% comment %} <p class="article-content">{{ post.author.profile.Hospital }}</p>
+            <p class="article-content">{{ post.author.profile.has_corona }}</p>
+
+            <p class="article-content">{{ post.days }}</p>
+            <p class="article-content">{{ post.test }}</p>
+            <p class="article-content">{{ post.covid }}</p> {% endcomment %}
+            <h4>General Details</h4>
+
+            <div> 
+                <table class="table table-hover table-dark">
+                <tbody>
+                    <tr>
+                    <th scope="row">1</th>
+                    <td>Name</td>
+                    <td>{{post.author}}</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">2</th>
+                    <td>Gender</td>
+                    <td> {{post.author.profile.gender | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">3</th>
+                    <td>Age</td>
+                    <td>{{post.author.profile.age | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">4</th>
+                    <td>Weight</td>
+                    <td>{{post.weight | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">5</th>
+                    <td>Blood Group</td>
+                    <td>{{post.author.profile.blood_group| safe}}</td> 
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+
+            
+            <h4>Location Details</h4>
+            <div> 
+                <table class="table table-hover table-dark">
+                <tbody>
+                    <tr>
+                    <th scope="row">1</th>
+                    <td>District</td>
+                    <td>{{ post.author.profile.city | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">2</th>
+                    <td>Nearest Hospital</td>
+                    <td>{{ post.author.profile.Hospital | safe}}</td> 
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+
+            <h4>Further Details</h4>
+            <div> 
+                <table class="table table-hover table-dark">
+                <tbody>
+                    <tr>
+                    <th scope="row">1</th>
+                    <td>Pregnant</td>
+                    <td>{{ post.pregnant | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">2</th>
+                    <td>Anemia</td>
+                    <td>{{post.anemia| safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">3</th>
+                    <td>Infectious Disease</td>
+                    <td>{{ post.infectious_diseases| safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">4</th>
+                    <td>Donor doesn't have covid symptoms for 14 days</td>
+                    <td>{{ post.days | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">5</th>
+                    <td>Donor has taken a follow up covid test</td>
+                    <td>{{ post.test | safe}}</td> 
+                    </tr>
+                    <tr>
+                    <th scope="row">6</th>
+                    <td>Covid test was positive</td>
+                    <td>{{ post.covid | safe}}</td> 
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            
             <form method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
