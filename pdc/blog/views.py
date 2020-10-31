@@ -54,9 +54,6 @@ def PostDetailView(request,pk):
             })
 
 
-
- 
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
@@ -145,3 +142,13 @@ def FilteredBloodView(request, cats):
            category_posts.append(post)
 
     return render(request, 'blog/categories.html', {'cats': cats, 'category_posts': category_posts})
+
+def recommend(request):
+    category_posts = []
+    posts = Post.objects.all()
+    for post in posts:
+        if post.author.profile.blood_group == request.user.profile.blood_group:
+            if post.author.profile.city == request.user.profile.city:
+                category_posts.append(post)
+
+    return render(request, 'blog/categories.html', {'category_posts': category_posts})

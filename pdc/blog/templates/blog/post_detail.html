@@ -21,9 +21,12 @@
                 
                 </fieldset>
                 {% if user.profile.is_donor == False %}
-                    <div class="form-group">
-                        <button class="btn btn-outline-info" type="submit">Receive Donation</button>
-                    </div>
+                    {% if post.author == user %}
+                    {% else %}
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Receive Donation</button>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </form>
                
