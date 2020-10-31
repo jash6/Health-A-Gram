@@ -28,7 +28,7 @@ class Donation(models.Model):
     receiver = models.CharField(max_length = 100)
     donor = models.CharField(max_length = 100)
     Hospital = models.CharField(max_length = 100)
-    City = models.CharField(max_length = 100,default='')
+    City = models.CharField(max_length = 100)
     date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

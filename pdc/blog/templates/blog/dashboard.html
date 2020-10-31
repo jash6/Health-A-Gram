@@ -15,45 +15,47 @@
 <div class="row d-flex justify-content-center">
 <div class="col-9">
 <h1 class='my-4' style="text-align: center;">My Dashboard</h1>
-    <legend class="border-bottom mb-4">My donations to NGOs</legend>
+    {% if user.profile.is_donor == False %}
+      <legend class="border-bottom mb-4">Donations I have recieved</legend>
+      <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Donor</th>
+              <th scope="col">City</th>
+              <th scope="col">Date</th>
+              <th scope="col">Hospital</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for recieve in recieved %}
+            <tr>
+              <th scope="row">{{ recieve.donor }}</th>
+              <td>{{ recieve.City }}</td>
+              <td>{{ recieve.date|date:"F d, Y" }}</td>
+              <td>{{ recieve.Hospital }}</td>
+            </tr>
+          {% endfor %}  
+          </tbody>
+        </table>
+      {% endif %}
+    {% if user.profile.is_donor == True %}
+    <legend class="border-bottom mb-4">Donations I have donated</legend>
     <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Receiver</th>
-            <th scope="col">Category</th>
+            <th scope="col">Donated to</th>
+            <th scope="col">City</th>
             <th scope="col">Date</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Hospital</th>
           </tr>
         </thead>
         <tbody>
         {% for donation in donations %}
           <tr>
             <th scope="row">{{ donation.receiver }}</th>
-            <td>{{ donation.category }}</td>
+            <td>{{ donation.City }}</td>
             <td>{{ donation.date|date:"F d, Y" }}</td>
-            <td>{{ donation.quantity }}</td>
-          </tr>
-        {% endfor %}  
-        </tbody>
-      </table>
-    {% if user.profile.ngo == True %}
-    <legend class="border-bottom mb-4">Donations recieved from following NGOs</legend>
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Sender</th>
-            <th scope="col">Category</th>
-            <th scope="col">Date</th>
-            <th scope="col">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for donation in recieved %}
-          <tr>
-            <th scope="row">{{ donation.donor }}</th>
-            <td>{{ donation.category }}</td>
-            <td>{{ donation.date|date:"F d, Y" }}</td>
-            <td>{{ donation.quantity }}</td>
+            <td>{{ donation.Hospital }}</td>
           </tr>
         {% endfor %}  
         </tbody>
