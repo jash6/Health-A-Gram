@@ -82,8 +82,6 @@
                                     <li class="active"><a class="nav-item nav-link" style="font-weight: 600; font-size: 20px;" href="{% url 'blog-home'%}">Donors List</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'news'%}">News</a></li>
                                     {% if user.is_authenticated %}
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'dash-view'%}">Dashboard</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'recommend'%}">Recommended</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'profile' %}">Profile</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'post-create' %}">New Post</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'logout' %}">Log Out</a></li>

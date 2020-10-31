@@ -8,6 +8,7 @@
         <script id="gs-sdk" src='//www.buildquickbots.com/botwidget/v3/demo/static/js/sdk.js?v=3' key="c79e3e23-b109-46ae-b3a1-803df654eb0c" ></script>
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <!-- Bootstrap CSS -->
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css'%}">
         <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/font-awesome.min.css' %}">
@@ -141,7 +142,7 @@ display: block;
             <section class="header-bottom">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5 col-sm-12 col-xs-12">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
                             <a href="{% url 'main-home'%}">
                                 <div class="main-logo">
                                     <img style="padding: 0; height: 60px;" src="../../../media/main-logo.png" alt="">
@@ -149,21 +150,21 @@ display: block;
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-7 col-sm-12 col-xs-12">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
                             <div class="menu">
                                 <ul class="nav navbar-nav">
                                     
-                                    <li class="active"><a class="nav-item nav-link" style="font-weight: 600; font-size: 20px;" href="{% url 'blog-home'%}">Donors List</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'news'%}">News</a></li>
+                                    <li class="active"><a class="nav-item nav-link" style="font-weight: 600; " href="{% url 'blog-home'%}">Donors List</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'news'%}">News</a></li>
                                     {% if user.is_authenticated %}
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'dash-view'%}">Dashboard</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'recommend'%}">Recommended</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'profile' %}">Profile</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'post-create' %}">New Post</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'logout' %}">Log Out</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'dash-view'%}">Dashboard</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'recommend'%}">Recommended</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'post-create' %}">New Post</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'logout' %}">Log Out</a></li>
                                     {% else %}
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'login' %}">Log In</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'register' %}">Register</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'login' %}">Log In</a></li>
+                                    <li><a style="font-weight: 600; " href="{% url 'register' %}">Register</a></li>
                                     {% endif %}
                                 </ul>
                             </div>
