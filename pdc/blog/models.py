@@ -24,12 +24,12 @@ class Post(models.Model):
         return reverse("post-detail", kwargs={"pk": self.pk})
     
 
-# class Donation(models.Model):
-#     receiver = models.CharField(max_length = 100)
-#     donor = models.CharField(max_length = 100)
-#     quantity = models.IntegerField(default = 1)
-#     category = models.CharField(max_length = 100)
-#     date = models.DateTimeField(default=timezone.now)
+class Donation(models.Model):
+    receiver = models.CharField(max_length = 100)
+    donor = models.CharField(max_length = 100)
+    Hospital = models.CharField(max_length = 100)
+    City = models.CharField(max_length = 100,default='')
+    date = models.DateTimeField(default=timezone.now)
 
-#     def __str__(self):
-#         return self.donor
+    def __str__(self):
+        return self.donor

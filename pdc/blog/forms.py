@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post,Donation
 
 # GENDER=[('male','Male'),('female','Female'),('others','Others'),]
 # BLOODGROUP=[('o+','O+'),('a+','A+'),('b+','B+'),('ab+','AB+'),('o-','O-'),('a-','A-'),('b-','B-'),('ab-','AB-'),]
@@ -46,3 +46,9 @@ class PostForm(forms.ModelForm):
 #         fields = ['title', 'content','weight', "pregnant", "anemia", "infectious_diseases", "doctors_prescription",
 #             "days", "test", "covid"
 #         ]
+
+class Form(forms.ModelForm):
+
+    class Meta:
+        model= Donation
+        fields=()

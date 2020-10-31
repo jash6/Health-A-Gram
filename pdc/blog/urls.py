@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (PostListView, PostDetailView, PostCreateView,
-                    PostUpdateView, PostDeleteView,FilteredBloodView,FilteredHospitalView,FilteredCityView
+                    PostUpdateView, PostDeleteView,FilteredBloodView,FilteredHospitalView,FilteredCityView,DashboardView
 )
 from . import views
 from django.conf.urls.static import static
@@ -9,7 +9,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('', PostListView.as_view(), name='blog-home'),
-    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('post/<int:pk>/', views.PostDetailView, name='post-detail'),
+    path('dashboard/', views.DashboardView, name='dash-view'),
     path('post/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),

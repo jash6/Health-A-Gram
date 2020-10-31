@@ -15,7 +15,17 @@
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content">{{ object.content }}</p>
-             <img class = "rounded-circle article-img" src="{{ object.doctors_prescription.url }}" alt="img">
+            <img class = "rounded-circle article-img" src="{{ object.doctors_prescription.url }}" alt="img">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Donate</button>
+                </div>
+            </form>
+               
         </div> 
         
     </article>

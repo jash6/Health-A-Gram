@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post
-from .forms import PostForm
+from .models import Post,Donation
+from .forms import PostForm,Form
 from django.views.generic import (ListView, DetailView, CreateView,
                                   UpdateView, DeleteView
 )
 from users.models import Profile
+from django.contrib import messages
 
 # def home(request):
 #     context = {
@@ -20,8 +21,39 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
-class PostDetailView(DetailView):
-    model = Post
+# class PostDetailView(DetailView):
+#     model = Post
+def PostDetailView(request,pk):
+    if request.method== 'POST':
+        form=Form(request.POST)
+        if form.is_valid():
+            form.save()
+            donation =Donation()
+            post = get_object_or_404(Post, pk=pk)
+            donation.receiver= request.user
+            donation.donor= post.author
+            donation.city= post.author.profile.city
+            donation.Hospital = post.author.profile.Hospital
+            donation.save()
+            # send_mail('Corona Rangers has some great news for you',f' {donation.donor} ({request.user.email}) wants to donate  {qty} { donation.category}',settings.EMAIL_HOST_USER,[f'{post.author.email}'],fail_silently=False)
+            messages.success(request, f'We have notified the NGO, thankyou for the donation')
+            return redirect('dash-view')
+        else:
+            pass
+    else:
+        form=Form()
+        context = {
+            "form": form,
+            "object": get_object_or_404(Post, pk=pk),
+        }
+        return render(request,'blog/post_detail.html',{
+                "form": form,
+                "object": get_object_or_404(Post, pk=pk),
+            })
+
+
+
+ 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -64,14 +96,15 @@ def home(request):
     return render(request, 'blog/index.html')
 
 
-# def DashboardView(request):
-#     donations = Donation.objects.filter(donor=request.user)
-#     recieved = Donation.objects.filter(receiver=request.user)
-#     context = {
-#         'donations': donations,
-#         'recieved': recieved
-#     }
-#     return render(request, 'blog/dashboard.html', context)
+def DashboardView(request):
+    donations = Donation.objects.filter(donor=request.user)
+    recieved = Donation.objects.filter(receiver=request.user)
+    # print(donations[1])
+    context = {
+        'donations': donations,
+        'recieved': recieved
+    }
+    return render(request, 'blog/dashboard.html', context)
 
 def FilteredHospitalView(request, cats):
     category_posts = []
