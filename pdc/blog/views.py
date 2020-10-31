@@ -100,6 +100,9 @@ def home(request):
 def faq(request):
     return render(request, 'blog/faq.html')
 
+def news(request):
+    return render(request, 'blog/news.html')
+
 
 def DashboardView(request):
     donations = Donation.objects.filter(donor=request.user)
