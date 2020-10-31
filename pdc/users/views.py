@@ -1,25 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-# from django.contrib.auth.decorators import login_required
-from .models import Profile, Contact
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, DetailUpdateForm
+from django.contrib.auth.decorators import login_required
+from .models import Profile
 from django.views.generic import (DetailView)
 
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            profile = Profile()
-            # profile = Profile.objects.get(email = form.cleaned_data.get("email"))
-            profile.ngo = form.cleaned_data.get("ngo")
+            form.save()
+            print(form.cleaned_data)
+            username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! Please log in')
             return redirect('login')
+
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-
+@login_required
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance = request.user)
@@ -27,31 +27,24 @@ def profile(request):
                                    request.FILES, 
                                    instance = request.user.profile
                                   )
-        if u_form.is_valid() and p_form.is_valid():
+        d_form = DetailUpdateForm(request.POST, instance = request.user)
+        if u_form.is_valid() and p_form.is_valid() and d_form.is_valid():
             u_form.save()
             p_form.save()
+            d_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('profile')
+            return redirect('blog-home')
     else:
         u_form = UserUpdateForm(instance = request.user)
+        d_form = DetailUpdateForm(instance = request.user)
         p_form = ProfileUpdateForm(instance = request.user.profile)
     context = {
         'u_form': u_form,
         'p_form': p_form,
+        'd_form': d_form,
     }
     return render(request, 'users/profile.html', context)
 
 class ProfileView(DetailView):
     model = Profile
     template_name = 'users/profile_view.html'
-
-def contact(request):
-    if request.method=="POST":
-        print(request)
-        name=request.POST.get('name', '')
-        email=request.POST.get('email', '')
-        phone=request.POST.get('phone', '')
-        desc=request.POST.get('desc', '')
-        contact = Contact(name=name, email=email, phone=phone, desc=desc)
-        contact.save()
-    return render(request, 'users/contact.html')

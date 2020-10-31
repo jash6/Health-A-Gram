@@ -1,4 +1,4 @@
-"""pdc URL Configuration
+"""django_start URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -23,10 +23,9 @@ from users.views import ProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', user_views.register, name="register"),
-    path('contact/', user_views.contact, name="contact"),
+    path('register/', user_views.register, name="register"),
     path('profile/', user_views.profile, name="profile"),
-    # path('profile/<pk>/', ProfileView.as_view(), name='profile-view'),
+    path('profile/<pk>/', ProfileView.as_view(), name='profile-view'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name="login"),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name="logout"),
     path('password-reset/', 
@@ -45,7 +44,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), 
          name="password_reset_complete"),
 
-    # path('', include('blog.urls')),
+    path('', include('blog.urls')),
 ]
 
 if settings.DEBUG:
