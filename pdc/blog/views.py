@@ -97,6 +97,9 @@ def about(request):
 def home(request):
     return render(request, 'blog/index.html')
 
+def faq(request):
+    return render(request, 'blog/faq.html')
+
 
 def DashboardView(request):
     donations = Donation.objects.filter(donor=request.user)

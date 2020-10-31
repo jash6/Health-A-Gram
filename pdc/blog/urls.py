@@ -19,6 +19,8 @@ urlpatterns = [
     path('category/<str:cats>/', FilteredBloodView, name='category'),
     path('category1/<str:cats>/', FilteredHospitalView, name='category1'),
     path('category2/<str:cats>/', FilteredCityView, name='category2'),
+    path('faq/', views.faq, name='faq'),
+
 ] 
 
 if settings.DEBUG:

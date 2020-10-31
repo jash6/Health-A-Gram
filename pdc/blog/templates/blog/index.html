@@ -82,6 +82,7 @@
                                     
                                     <li class="active"><a class="nav-item nav-link" style="font-weight: 600; font-size: 20px;" href="{% url 'blog-home'%}">Home</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'blog-about'%}">About Us</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'faq'%}">FAQ's</a></li>
                                     {% if user.is_authenticated %}
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'profile' %}">Profile</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'post-create' %}">New Post</a></li>
