@@ -15,6 +15,7 @@
         {% else %}
             <title>Django Blog</title>
         {% endif %}
+        {% block css %}{% endblock %}
     </head>
     <body>
         <header class="site-header">
@@ -88,5 +89,6 @@
 
             }
         </script>
+        {% block js %}{% endblock %}
     </body>
 </html>
