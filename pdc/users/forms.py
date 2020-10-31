@@ -42,7 +42,7 @@ class DetailUpdateForm(forms.ModelForm):
     pregnant=forms.CharField(max_length=10, widget=forms.Select(choices=ANEMIA))
     anemia=forms.CharField(label='Do you suffer from anemia or low hemoglobin levels?',widget=forms.Select(choices=ANEMIA))
     infectious_diseases=forms.CharField(label='Do you suffer from any infectious diseases like HIV,Hepatitis,TB,Malaria ?',widget=forms.Select(choices=ANEMIA))
-    doctors_prescription=forms.CharField(max_length=10)
+    # doctors_prescription=forms.ImageField()
     days=forms.CharField(label='Has it been 14 days since the last day of COVID symptoms?',widget=forms.Select(choices=PREGNANT))
     test=forms.CharField(label='Did you have a follow up covid test?',widget=forms.Select(choices=PREGNANT))
     covid=forms.CharField(label='Was your COVID test positive?',widget=forms.Select(choices=PREGNANT))

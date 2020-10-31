@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
             'pregnant' : forms.Select(choices=ANEMIA, attrs={'class':'form-control'}),
             'anemia': forms.Select(choices=ANEMIA,attrs={'class':'form-control'}),
             'infectious_diseases': forms.Select(choices=ANEMIA ,attrs={'class':'form-control'}),
-            'doctors_prescription': forms.Select(choices=ANEMIA, attrs={'class':'form-control'}),
+            #'doctors_prescription': forms.Select(choices=ANEMIA, attrs={'class':'form-control'}),
             'days': forms.Select(choices=ANEMIA,attrs={'class':'form-control'}),
             'test': forms.Select(choices=ANEMIA, attrs={'class':'form-control'}),
             'covid': forms.Select(choices=ANEMIA, attrs={'class':'form-control'}),

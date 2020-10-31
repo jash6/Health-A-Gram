@@ -27,6 +27,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
 
+    
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -60,3 +62,13 @@ def about(request):
 
 def home(request):
     return render(request, 'blog/index.html')
+
+
+# def DashboardView(request):
+#     donations = Donation.objects.filter(donor=request.user)
+#     recieved = Donation.objects.filter(receiver=request.user)
+#     context = {
+#         'donations': donations,
+#         'recieved': recieved
+#     }
+#     return render(request, 'blog/dashboard.html', context)

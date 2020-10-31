@@ -12,7 +12,7 @@ class Post(models.Model):
     pregnant=models.CharField(max_length=10, default="no")
     anemia=models.CharField(max_length=10, default="no")
     infectious_diseases=models.CharField(max_length=10, default="no")
-    doctors_prescription=models.CharField(max_length=10, default="yes")
+    doctors_prescription=models.ImageField(default='default.jpg',upload_to='prescription_pics')
     days=models.CharField(max_length=10, default="14")
     test=models.CharField(max_length=10, default="yes")
     covid=models.CharField(max_length=10, default="yes")
@@ -23,3 +23,13 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"pk": self.pk})
     
+
+# class Donation(models.Model):
+#     receiver = models.CharField(max_length = 100)
+#     donor = models.CharField(max_length = 100)
+#     quantity = models.IntegerField(default = 1)
+#     category = models.CharField(max_length = 100)
+#     date = models.DateTimeField(default=timezone.now)
+
+#     def __str__(self):
+#         return self.donor
