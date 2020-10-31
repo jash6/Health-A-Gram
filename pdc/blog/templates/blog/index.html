@@ -79,12 +79,17 @@
                         <div class="col-md-7 col-sm-12 col-xs-12">
                             <div class="menu">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a style="font-weight: 600; font-size: 20px;" href="/home/">HOME</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="#">ABOUT US</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="#">NEWS</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="#">FAQ's</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="#">BLOG</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="#">CONTACT</a></li>
+                                    
+                                    <li class="active"><a class="nav-item nav-link" style="font-weight: 600; font-size: 20px;" href="{% url 'blog-home'%}">Home</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'blog-about'%}">About Us</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'post-create' %}">New Post</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'logout' %}">Log Out</a></li>
+                                    {% else %}
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'login' %}">Log In</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'register' %}">Register</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
