@@ -72,3 +72,36 @@ def home(request):
 #         'recieved': recieved
 #     }
 #     return render(request, 'blog/dashboard.html', context)
+
+def FilteredHospitalView(request, cats):
+    category_posts = []
+    # users = Profile.objects.filter(Hospital=cats)
+    posts = Post.objects.all()
+    for post in posts:
+       if post.author.profile.Hospital == cats:
+           category_posts.append(post)
+
+    return render(request, 'blog/categories.html', {'cats': cats, 'category_posts': category_posts})
+
+def FilteredCityView(request, cats):
+    print('random shit')
+    category_posts = []
+    users = Profile.objects.filter(city=cats)
+    posts = Post.objects.all()
+    print(posts)
+    for post in posts:
+        
+        if post.author.profile.city == cats:
+           category_posts.append(post)
+
+    return render(request, 'blog/categories.html', {'cats': cats, 'category_posts': category_posts})
+
+def FilteredBloodView(request, cats):
+    category_posts = []
+    users = Profile.objects.filter(blood_group=cats)
+    posts = Post.objects.all()
+    for post in posts:
+       if post.author.profile.blood_group == cats:
+           category_posts.append(post)
+
+    return render(request, 'blog/categories.html', {'cats': cats, 'category_posts': category_posts})
