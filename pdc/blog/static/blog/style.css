@@ -1,5 +1,5 @@
 .header .header-top {
-  background: #01d262 none repeat scroll 0 0;
+  background: rgb(252, 188, 49) none repeat scroll 0 0;
   height: 50px;
 }
 
@@ -7,6 +7,18 @@
   line-height: 50px;
   margin: 0;
   padding: 0;
+}
+.single-Promo{
+  background-color: rgb(235, 197, 116);
+
+}
+
+body{
+  background-color:white;
+}
+
+section.our_activity {
+  margin-bottom: -50px;
 }
 
 .header .header-top .contact p a {
@@ -22,7 +34,7 @@
 }
 
 .join-us > p {
-  background: #089549 none repeat scroll 0 0;
+  background: #003780 none repeat scroll 0 0;
   line-height: 50px;
   margin: 0;
   padding: 0;
@@ -38,9 +50,13 @@
   text-decoration: none;
   font-family: "Roboto", sans-serif;
 }
-
+section.header-bottom {
+  background-color: ghostwhite;
+}
 .header .header-bottom .menu {
   margin: 34px 0;
+  background-color: #000080;
+
 }
 
 .header .header-bottom .menu ul {
@@ -90,18 +106,20 @@
 }
 
 .carosal-area .text > h3 {
-  color: #fff;
-  font-size: 35px;
+  color: #000;
+  font-size: 55px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
   margin-top: 210px;
 }
 
 .carosal-area .text > p {
-  color: #fff;
+  color: #000;
   font-family: "Roboto", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 20px;
+  width: 80%;
+  margin-left: 10%;
+  font-weight: 600;
   line-height: 30px;
   margin-top: 28px;
 }
@@ -125,7 +143,7 @@
 
 .carosal-area .text > h5.white-button a {
   background: #fff;
-  color: #01d262;
+  color: #000080;
 }
 
 .carosal-area .owl-prev {
@@ -141,7 +159,7 @@
 }
 
 .carosal-area .owl-theme .owl-nav [class*="owl-"] {
-  background: #1cb060 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   border-radius: 50%;
   font-size: 25px;
   height: 50px;
@@ -182,16 +200,26 @@
   font-family: "Roboto", sans-serif;
   font-size: 32px;
   font-weight: 700;
-  margin: 115px auto 50px;
+  margin: 20px auto 50px;
   position: relative;
   text-transform: uppercase;
   width: 100%;
   text-align: center;
-  margin: 115px 0 50px;
+  margin: 50px 0 50px;
+}
+
+.letast_news .single_news .texts {
+  transition: 0.5s;
+  background-color: rgb(248, 199, 93);
+}
+.letast_news .single_news:hover .texts {
+  padding: 30px;
+  background-color: lightgrey;
+  border-radius: 0 0 20px 20px;
 }
 
 .wrapper section > h2::before {
-  background: #01d262 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   bottom: -13px;
   content: "";
   height: 2px;
@@ -274,21 +302,21 @@
 }
 
 .our_activity .single-Promo:hover > h2 a {
-  color: #01d262;
+  color: #000080;
 }
 
 .our_activity .single-Promo:hover > .promo-icon i {
-  background: #01d262;
+  background: #000080;
   color: #fff;
 }
 
 .our_activity .single-Promo:hover > h2::before {
-  background: #01d262;
+  background: #000080;
   color: #fff;
 }
 
 .donate_section {
-  background-image: url("img/donate-bg.jpg");
+  background-image: url("../../../media/donate-bg.jpg");
   background-size: cover;
 }
 
@@ -328,7 +356,7 @@
   max-width: 700px;
   margin: 0 auto;
   height: 10px;
-  background-color: #1eb464;
+  background-color: #000080;
 }
 
 .donate_section .progress-bar {
@@ -361,7 +389,7 @@
 .donate_section h2 a {
   background: #fff none repeat scroll 0 0;
   border-radius: 30px;
-  color: #05ce68;
+  color: #000080;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -381,7 +409,6 @@
 .events_section_area .events_single p {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
-  margin-top: 14px;
   font-weight: 400;
   position: relative;
 }
@@ -409,12 +436,12 @@
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 700;
-  margin-top: 70px;
+  margin-top: 20px;
   text-align: center;
 }
 
 .events_section_area .events_single:hover h3 {
-  color: #01d262;
+  color: #000080;
   text-decoration: underline;
 }
 
@@ -459,7 +486,7 @@
 }
 
 .our_cuauses .our_cuauses_single .item p span {
-  color: #01d262;
+  color: #000080;
 }
 
 .our_cuauses .our_cuauses_single .item p.progress-top {
@@ -478,7 +505,7 @@
 }
 
 .our_cuauses .progress-bar {
-  background-color: #01d262;
+  background-color: #000080;
 }
 
 .our_cuauses .progress-text {
@@ -503,7 +530,7 @@
   text-align: center;
 }
 
-.our_cuauses h2. {
+.our_cuauses h2 {
   color: #3c354e;
   font-family: "Roboto", sans-serif;
   font-size: 32px;
@@ -514,7 +541,7 @@
 }
 
 .our_cuauses h2::before {
-  background: #01d262 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   bottom: -13px;
   content: "";
   height: 2px;
@@ -524,7 +551,7 @@
 }
 
 .our_cuauses h2.borderes::before {
-  background: #01d262 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   bottom: -13px;
   content: "";
   height: 0px;
@@ -544,13 +571,13 @@
 .our_cuauses h2 a {
   background: #fff none repeat scroll 0 0;
   border-radius: 30px;
-  color: #05ce68;
+  color: #000080;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 500;
   padding: 15px 40px;
   text-decoration: none;
-  border: 1px solid #05ce68;
+  border: 1px solid #000080;
 }
 
 .our_cuauses .our_cuauses_single .item {
@@ -558,12 +585,12 @@
 }
 
 .our_cuauses .our_cuauses_single .item .for_padding:hover > h2 {
-  color: #01d262;
+  color: #000080;
 }
 
 .our_cuauses .our_cuauses_single .item .for_padding:hover > h2 a {
   color: #fff;
-  background: #01d262;
+  background: #000080;
 }
 
 .our_cuauses .owl-theme .owl-nav {
@@ -585,9 +612,9 @@
 
 .our_cuauses .owl-theme .owl-nav i {
   background: #fff none repeat scroll 0 0;
-  border: 1px solid #01d262;
+  border: 1px solid #000080;
   border-radius: 5px;
-  color: #01d262;
+  color: #000080;
   font-size: 25px;
   height: 50px;
   overflow: hidden;
@@ -596,7 +623,7 @@
 }
 
 .our_cuauses .owl-theme .owl-nav i:hover {
-  background: #01d262;
+  background: #000080;
   color: #fff;
 }
 
@@ -605,7 +632,7 @@
 }
 
 .donors .donors_input {
-  background: #01d262 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   float: left;
   height: 600px;
   text-align: center;
@@ -647,7 +674,7 @@
 }
 
 .donors .donors_input h5 input {
-  background: #01d262 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   border: 1px solid #fff;
   border-radius: 10px;
   color: #fff;
@@ -673,9 +700,9 @@
 
 .donors .donors_input input[type="submit"] {
   background: #fff none repeat scroll 0 0;
-  border: 2px solid #01d262;
+  border: 2px solid #000080;
   border-radius: 10px;
-  color: #01d262;
+  color: #000080;
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 500;
@@ -690,7 +717,7 @@
 
 .donors .donors_input h4 select {
   width: 500px;
-  background: #01d262 none repeat scroll 0 0;
+  background: #000080 none repeat scroll 0 0;
   border: none;
   padding: 17px 20px;
   border-radius: 10px;
@@ -733,7 +760,7 @@
 }
 
 .donors .donors_image .item p span {
-  color: #01d262;
+  color: #000080;
 }
 
 .donors .donors_image .owl-theme .owl-nav {
@@ -743,8 +770,8 @@
 
 .donors .donors_image .owl-theme .owl-dots .owl-dot.active span,
 .donors .donors_image .owl-theme .owl-dots .owl-dot:hover span {
-  background: #01d262 none repeat scroll 0 0;
-  border: 1px solid #01d262;
+  background: #000080 none repeat scroll 0 0;
+  border: 1px solid #000080;
 }
 
 .donors .donors_image .owl-theme .owl-dots .owl-dot span {
@@ -799,7 +826,7 @@
 }
 
 .volunteer_area .owl-theme .owl-nav {
-  margin: 65px 0 110px;
+  margin: 65px 0 0;
 }
 
 .volunteer_area .owl-theme .owl-nav [class*="owl-"] {
@@ -821,9 +848,9 @@
 
 .volunteer_area .owl-theme .owl-nav i {
   background: #fff none repeat scroll 0 0;
-  border: 1px solid #01d262;
+  border: 1px solid #000080;
   border-radius: 5px;
-  color: #01d262;
+  color: #000080;
   font-size: 25px;
   height: 50px;
   overflow: hidden;
@@ -832,12 +859,12 @@
 }
 
 .volunteer_area .owl-theme .owl-nav i:hover {
-  background: #01d262;
+  background: #000080;
   color: #fff;
 }
 
 .carosal_bottom {
-  background-image: url(img/carosal_bottom_bg.jpg);
+  background-image: url(../../../media/carosal_bottom_bg.jpg);
   background-size: 100% 100%;
   height: 575px;
 }
@@ -870,7 +897,7 @@
 }
 
 .carosal_bottom .item h5 i {
-  color: #1dbb6b;
+  color: #000080;
   font-size: 60px;
 }
 
@@ -949,11 +976,11 @@
 }
 
 .letast_news .single_news:hover .texts h3 {
-  color: #30dd85;
+  color: #000080;
 }
 
 .letast_news .single_news:hover .texts h3 a {
-  color: #30dd85;
+  color: #000080;
   text-decoration: underline;
 }
 
@@ -1075,18 +1102,17 @@
 }
 
 .footer .footer_bottom p a {
-  color: #2ad880;
+  color: #000080;
   text-decoration: none;
 }
 
 .block-wrapper {
-  background-image: url(img/count.jpg);
+  background-color: #000080;
   background-size: 100% 100%;
 }
 
 .block-wrapper {
   padding: 60px 0;
-  margin-top: 130px;
 }
 
 .block-wrapper .block {
@@ -1114,7 +1140,7 @@
 }
 
 .block-wrapper .for-border {
-  border-left: 1px solid #2be587;
+  border-left: 1px solid #3131ca;
 }
 
 .block-wrapper .for-border:first-child {
