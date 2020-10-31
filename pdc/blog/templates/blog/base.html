@@ -15,6 +15,75 @@
     <link rel="stylesheet" href="{% static 'blog/css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/style.css'%}">
     <link rel="stylesheet" href="{% static 'blog/responsive.css'%}">
+    <style>
+        .dropbtn {
+            background-color: rgb(85, 85, 219);
+ color: white;
+ padding: 16px;
+ font-size: 16px;
+ border: none;
+ transition: all 0.3s;
+ padding-left: 23x;
+   padding-right: 23px;
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: rgb(252, 188, 49);
+}
+
+.navElements {
+  float: left;
+}
+.dropbtn{
+  padding-left: 23x;
+  padding-right: 23px;
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+  </style>
         {% if title %}
             <title>Django Blog - {{ title }}</title>
         {% else %}
@@ -114,18 +183,40 @@
                 {% block content %}{% endblock %}
                 </div>
                 <div class="col-md-4">
-                <div class="content-section">
-                    <h3>Our Sidebar</h3>
-                    <p class='text-muted'>You can put any information here you'd like.
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-light">Latest Posts</li>
-                        <li class="list-group-item list-group-item-light">Announcements</li>
-                        <li class="list-group-item list-group-item-light">Calendars</li>
-                        <li class="list-group-item list-group-item-light">etc</li>
-                    </ul>
-                    </p>
-                </div>
-                </div>
+                    <div >
+                        <h3>Filters Available</h3>
+                        <p class='text-muted'>Choose the option which is most suitable for you</p>
+                        
+                            <div class="dropdown navElements">
+                                <button class="dropbtn">Blood Groups</button>
+                                <div class="dropdown-content">
+                                    <a href="/category/a+/">A positive</a>
+                                    <a href="/category/a-/">A negative</a>
+                                    <a href="/category/b+/">B positive</a>
+                                    <a href="/category/b-/">B negative</a>
+                                    <a href="/category/o+/">O positive</a>
+                                    <a href="/category/o-/">O negative</a>
+                                    <a href="/category/ab+/">AB positive</a>
+                                    <a href="/category/ab-/">AB negative</a>
+                                </div>
+                            </div>
+                            <div style="margin-left: 10px;" class="dropdown navElements">
+                                <button class="dropbtn">Place</button>
+                                <div class="dropdown-content">
+
+                                    <a href="/category/a+/">A positive</a>
+                                    <a href="/category/a-/">A negative</a>
+                                    <a href="/category/b+/">B positive</a>
+                                    <a href="/category/b-/">B negative</a>
+                                    <a href="/category/o+/">O positive</a>
+                                    <a href="/category/o-/">O negative</a>
+                                    <a href="/category/ab+/">AB positive</a>
+                                    <a href="/category/ab-/">AB negative</a>
+                                </div>
+                            </div>                  
+     
+                    </div>
+                    </div>
             </div>
         </main>
     </div>
