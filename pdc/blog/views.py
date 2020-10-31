@@ -92,7 +92,14 @@ def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
 def home(request):
-    return render(request, 'blog/index.html')
+
+    profiles = Profile.objects.all()
+    # profiles.append(Profile.objects.filter(blood_group="o+").first())
+    # profiles.append(Profile.objects.filter(blood_group="ab+").last())
+    # profiles.append(Profile.objects.filter(blood_group="ab+").first())
+    # profiles.append(Profile.objects.filter(blood_group="o+").last())
+
+    return render(request, 'blog/index.html', {"profiles": profiles})
 
 def faq(request):
     return render(request, 'blog/faq.html')

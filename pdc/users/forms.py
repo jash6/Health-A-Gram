@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, DonorDetails
 
 GENDER=[('male','Male'),('female','Female'),('others','Others'),]
-BLOODGROUP=[('o+','O+'),('a+','A+'),('b+','B+'),('ab+','AB+'),('o-','O-'),('a-','A-'),('b-','B-'),('ab-','AB-'),]
+BLOODGROUP=[('O+','O+'),('A+','A+'),('B+','B+'),('AB+','AB+'),('O-','O-'),('A-','A-'),('B-','B-'),('AB-','AB-'),]
 PREGNANT=[('yes','Yes'),('no','No')]
 ANEMIA=[('yes','Yes'),('no','No')]
 
