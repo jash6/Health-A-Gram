@@ -34,7 +34,7 @@ def PostDetailView(request,pk):
             post = get_object_or_404(Post, pk=pk)
             donation.receiver= request.user
             donation.donor= post.author
-            donation.City= post.author.profile.city
+            donation.City= post.author.profile.district
             donation.Hospital = post.author.profile.Hospital
             donation.save()
             send_mail('Health-a-gram has some great news for you',f' {request.user} ({request.user.email}) needs your help!',settings.EMAIL_HOST_USER,[f'{post.author.email}'],fail_silently=False)
@@ -133,12 +133,12 @@ def FilteredHospitalView(request, cats):
 def FilteredCityView(request, cats):
     print('random shit')
     category_posts = []
-    users = Profile.objects.filter(city=cats)
+    users = Profile.objects.filter(district=cats)
     posts = Post.objects.all()
     print(posts)
     for post in posts:
         
-        if post.author.profile.city == cats:
+        if post.author.profile.district == cats:
            category_posts.append(post)
 
     return render(request, 'blog/categories.html', {'cats': cats, 'category_posts': category_posts})
@@ -158,7 +158,7 @@ def recommend(request):
     posts = Post.objects.all()
     for post in posts:
         if post.author.profile.blood_group == request.user.profile.blood_group:
-            if post.author.profile.city == request.user.profile.city:
+            if post.author.profile.district == request.user.profile.district:
                 category_posts.append(post)
     if len(category_posts) >= 1:
         return render(request, 'blog/categories.html', {'category_posts': category_posts})

@@ -15,7 +15,7 @@
                     <div class="article-metadata">
                     <a class="mr-2" href="{% url 'profile-view' post.author.profile.id %}">{{ post.author }}</a>
                     <a class="mr-2" href="{% url 'category' post.author.profile.blood_group %}">- {{ post.author.profile.blood_group }}</a>
-                    <a class="mr-2" href="{% url 'category2' post.author.profile.city %}">- {{ post.author.profile.city }}</a>
+                    <a class="mr-2" href="{% url 'category2' post.author.profile.district %}">- {{ post.author.profile.district }}</a>
                     <a class="mr-2" href="{% url 'category1' post.author.profile.Hospital %}">- {{ post.author.profile.Hospital }}</a>
                     <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
                     </div>

@@ -26,7 +26,7 @@ class ProfileUpdateForm(forms.ModelForm):
     age =forms.IntegerField()
     gender=forms.CharField(label='What is your gender?',widget=forms.Select(choices=GENDER))
     blood_group=forms.CharField(label='What is your blood Group?',widget=forms.Select(choices=BLOODGROUP))
-    city=forms.CharField(max_length=10)
+    district=forms.CharField(max_length=10)
     Hospital=forms.CharField(max_length=10, label='Nearby hospitals?')
     has_corona = forms.CharField(label='Was your COVID test positive?',widget=forms.Select(choices=PREGNANT))
     is_donor = forms.BooleanField(required=False)
@@ -34,7 +34,7 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile 
         fields = ['image', 'is_donor', 'age', 'gender', 'blood_group',
-                   'city', 'Hospital', 'has_corona'
+                   'district', 'Hospital', 'has_corona'
                  ]
 
 class DetailUpdateForm(forms.ModelForm):

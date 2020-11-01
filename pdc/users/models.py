@@ -7,7 +7,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=10, default="")
     age = models.IntegerField(default=1)
     blood_group = models.CharField(max_length=50, default="")
-    city = models.CharField(max_length=10, default="")
+    district = models.CharField(max_length=10, default="")
     # Hospital = models.ImageField(_(""), upload_to=None, height_field=None, width_field=None, max_length=None)
     Hospital = models.CharField(max_length=10, default="")
     has_corona = models.CharField(max_length=10, default="")
