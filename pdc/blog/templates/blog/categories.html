@@ -1,19 +1,23 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    {% for post in category_posts %}
-        <article class="media content-section">
-            <img class = "rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-            <div class="media-body">
-                <div class="article-metadata">
-                <a class="mr-2" href="{% url 'profile-view' post.author.profile.id %}">{{ post.author }}</a>
-                <a class="mr-2" href="{% url 'category' post.author.profile.blood_group %}">- {{ post.author.profile.blood_group }}</a>
-                <a class="mr-2" href="{% url 'category2' post.author.profile.city %}">- {{ post.author.profile.city }}</a>
-                <a class="mr-2" href="{% url 'category1' post.author.profile.Hospital %}">- {{ post.author.profile.Hospital }}</a>
-                <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+    {% if category_posts %}
+        {% for post in category_posts %}
+            <article class="media content-section">
+                <img class = "rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+                <div class="media-body">
+                    <div class="article-metadata">
+                    <a class="mr-2" href="{% url 'profile-view' post.author.profile.id %}">{{ post.author }}</a>
+                    <a class="mr-2" href="{% url 'category' post.author.profile.blood_group %}">- {{ post.author.profile.blood_group }}</a>
+                    <a class="mr-2" href="{% url 'category2' post.author.profile.city %}">- {{ post.author.profile.city }}</a>
+                    <a class="mr-2" href="{% url 'category1' post.author.profile.Hospital %}">- {{ post.author.profile.Hospital }}</a>
+                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                    </div>
+                    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                    <p class="article-content">{{ post.content }}</p>
                 </div>
-                <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                <p class="article-content">{{ post.content }}</p>
-            </div>
-        </article>
-    {% endfor %}
+            </article>
+        {% endfor %}
+    {% else %}
+        <h2>No recommendations, please check donor list</h2>
+    {% endif %}
 {% endblock content%}

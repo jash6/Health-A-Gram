@@ -81,7 +81,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = '/donate/'
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
@@ -157,5 +157,9 @@ def recommend(request):
         if post.author.profile.blood_group == request.user.profile.blood_group:
             if post.author.profile.city == request.user.profile.city:
                 category_posts.append(post)
+    if len(category_posts) > 1:
+        return render(request, 'blog/categories.html', {'category_posts': category_posts})
+    else:
+        return render(request, 'blog/categories.html')
 
-    return render(request, 'blog/categories.html', {'category_posts': category_posts})
+    
