@@ -160,7 +160,7 @@ def recommend(request):
         if post.author.profile.blood_group == request.user.profile.blood_group:
             if post.author.profile.city == request.user.profile.city:
                 category_posts.append(post)
-    if len(category_posts) > 1:
+    if len(category_posts) >= 1:
         return render(request, 'blog/categories.html', {'category_posts': category_posts})
     else:
         return render(request, 'blog/categories.html')

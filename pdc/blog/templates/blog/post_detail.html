@@ -1,5 +1,16 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<style>
+    button.btn.btn-outline-info {
+      background-color: rgb(63, 171, 243);
+      font-weight: 600;
+      transition: 0.5s;
+  }
+  button.btn.btn-outline-info:hover {
+      background-color: rgb(255, 204, 95);
+      color: black;
+  }
+  </style>
     <article class="media content-section">
         <img  src="{{ post.author.profile.image.url }}">
         <div class="media-body">
