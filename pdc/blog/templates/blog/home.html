@@ -1,5 +1,12 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<style>
+    h1{
+    text-shadow: -3px -3px 6px #00000060;
+    font-weight: 600;
+    }
+</style>
+<h1 class='my-4' style="text-align: center;">All Donors</h1>
         {% for post in posts %}
             <article class="media content-section">
                 <img class = "rounded-circle article-img" src="{{ post.author.profile.image.url }}">

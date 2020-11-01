@@ -1,5 +1,12 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<style>
+    h1{
+    text-shadow: -3px -3px 6px #00000060;
+    font-weight: 600;
+    }
+</style>
+<h1 class='my-4' style="text-align: center;">Desired Donors</h1>
     {% if category_posts %}
         {% for post in category_posts %}
             <article class="media content-section">

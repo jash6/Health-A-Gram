@@ -5,7 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Front page</title>
+    <title>Health A Gram</title>
+    <script id="gs-sdk" src='//www.buildquickbots.com/botwidget/v3/demo/static/js/sdk.js?v=3' key="2de8d293-c16d-42e5-ab6e-28caf5b424e7" ></script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
@@ -28,6 +36,7 @@
             margin-top: 0;
             border-radius: 12.5px;
         }
+        
         .our_activity{
             /* box-shadow: 40px 60px 30px rgba(0, 0, 0, 0.1); */
         }
@@ -60,7 +69,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
-                            
+                            <div align="padding-right" id="google_translate_element"> </div>
                         </div>
                     </div>
                 </div>
@@ -81,9 +90,12 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a class="nav-item nav-link" style="font-weight: 600; font-size: 20px;" href="{% url 'blog-home'%}">Find Donors</a></li>
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'news'%}">News</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'faq'%}">FAQ's</a></li>
                                     {% if user.is_authenticated %}
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'profile' %}">Profile</a></li>
-                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'post-create' %}">New Post</a></li>
+                                    {% if user.profile.is_donor %}
+                                        <li><a style="font-weight: 600; " href="{% url 'post-create' %}">New Post</a></li>
+                                    {% endif %}
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'logout' %}">Log Out</a></li>
                                     {% else %}
                                     <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'login' %}">Log In</a></li>
@@ -105,24 +117,24 @@
                                 <div class="text">
                                     <h3>Building a network of plasma across India for the recovery of COVID-19 patients</h3>
                                     <p>A single plasma donation can save upto two lives</p>
-                                    <h5 class="white-button"><a href="#">DONATE NOW</a></h5>
-                                    <h5 class="white-button"><a href="#">CONTACT US</a></h5>
+                                    <h5 class="white-button"><a href="/donate">GET DONATIONS</a></h5>
+                                    <h5 class="white-button"><a href="/contact">CONTACT US</a></h5>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="text">
                                     <h3>Donate Blood and Gift a life</h3>
                                     <p> Every Drop counts </p>
-                                    <h5 class="white-button"><a href="#">DONATE NOW</a></h5>
-                                    <h5 class="white-button"><a href="#">CONTACT US</a></h5>
+                                    <h5 class="white-button"><a href="/donate">GET DONATIONS</a></h5>
+                                    <h5 class="white-button"><a href="/contact">CONTACT US</a></h5>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="text">
                                     <h3>Donate Blood/Plasma and become a donor hero  </h3>
                                     <p> Every drop can save a million lives</p>
-                                    <h5 class="white-button"><a href="#">DONATE NOW</a></h5>
-                                    <h5 class="white-button"><a href="#">CONTACT US</a></h5>
+                                    <h5 class="white-button"><a href="/donate">GET DONATIONS</a></h5>
+                                    <h5 class="white-button"><a href="/contact">CONTACT US</a></h5>
                                 </div>
                             </div>
                         </div>   
@@ -234,144 +246,53 @@
 
 
        
-        <section style="height: 120vh;" class="our_cuauses">
-            <h2 style="margin-top: 210px;">OUR CAUSES</h2>
+        
+ 
+        <div class="clear"></div>
+        
+
+   
+        <section  class="letast_news">
+            <h2>latest news</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et dolore magna aliqua. </p>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="our_cuauses_single owl-carousel owl-theme">
-                            <div class="item">
-                                <img src="../../../media/our_cuauses_one.jpg" alt="">
-                                <div class="for_padding">
-                                    <h2>FUTURES FOR CHILDREN</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minima</p>
-                                    <div class="progress-text">
-                                        <p class="progress-top">50%</p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
-                                        </div>
-                                        <p class="progress-left">Raised: <span>$1200</span></p>
-                                        <p class="progress-right">Goal: <span>$2400</span></p>
-                                    </div>
-                                    <h2 class="borderes"><a href="#">DONATE NOW</a></h2>
-                                </div>
+                    <div class="col-md-4 latest-news">
+                        <a href="/news"><div class="single_news">
+                            <img src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2020/10/31/Pictures/delhi-covid-19-test_ae8fddde-1b02-11eb-bfd3-008a2bae3f6c.jpg" alt="">
+                            <div class="texts">
+                                <p class="date"><a href="#">30 May, 2017</a></p>
+                                <h3>COVID-19: 10 Do’s and Don’ts To Stay Safe During The Outbreaks</h3>
+                                <p class="test">Covid-cases in Delhi surged to a new high on Friday even as a concerned home ministry has called for a meeting on Monday to discuss the issue.</p>
+                                <h3><a href="#">READ MORE</a></h3>
                             </div>
-                            <div class="item">
-                                <img src="../../../media/our_cuauses_two.jpg" alt="">
-                                <div class="for_padding">
-                                    <h2>FUTURES FOR CHILDREN</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minima</p>
-                                    <div class="progress-text">
-                                        <p class="progress-top">50%</p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
-                                        </div>
-                                        <p class="progress-left">Raised: <span>$1200</span></p>
-                                        <p class="progress-right">Goal: <span>$2400</span></p>
-                                    </div>
-                                    <h2 class="borderes"><a href="#">DONATE NOW</a></h2>
-                                </div>
+                        </div></a>
+                    </div>
+                    <div class="col-md-4 latest-news">
+                        <a href="/news"><div class="single_news">
+                            <img src="../../../media/news_images_1.jpg" alt="">
+                            <div class="texts">
+                                <p class="date"><a href="#">30 May, 2017</a></p>
+                                <h3>COVID-19: 10 Do’s and Don’ts To Stay Safe During The Outbreaks</h3>
+                                <p class="test">Covid-cases in Delhi surged to a new high on Friday even as a concerned home ministry has called for a meeting on Monday to discuss the issue.</p>
+                                <h3><a href="#">READ MORE</a></h3>
                             </div>
-                            <div class="item">
-                                <img src="../../../media/our_cuauses_three.jpg" alt="">
-                                <div class="for_padding">
-                                    <h2>FUTURES FOR CHILDREN</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minima</p>
-                                    <div class="progress-text">
-                                        <p class="progress-top">50%</p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
-                                        </div>
-                                        <p class="progress-left">Raised: <span>$1200</span></p>
-                                        <p class="progress-right">Goal: <span>$2400</span></p>
-                                    </div>
-                                    <h2 class="borderes"><a href="#">DONATE NOW</a></h2>
-                                </div>
+                        </div></a>
+                    </div>
+                    <div class="col-md-4 latest-news">
+                        <a href="/news"><div class="single_news">
+                            <img src="../../../media/news_images_2.jpg" alt="">
+                            <div class="texts">
+                                <p class="date"><a href="#">30 May, 2017</a></p>
+                                <h3>COVID-19: 10 Do’s and Don’ts To Stay Safe During The Outbreaks</h3>
+                                <p class="test">Covid-cases in Delhi surged to a new high on Friday even as a concerned home ministry has called for a meeting on Monday to discuss the issue.</p>
+                                <h3><a href="#">READ MORE</a></h3>
                             </div>
-                            <div class="item">
-                                <img src="../../../media/our_cuauses_three.jpg" alt="">
-                                <div class="for_padding">
-                                    <h2>FUTURES FOR CHILDREN</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minima</p>
-                                    <div class="progress-text">
-                                        <p class="progress-top">50%</p>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
-                                        </div>
-                                        <p class="progress-left">Raised: <span>$1200</span></p>
-                                        <p class="progress-right">Goal: <span>$2400</span></p>
-                                    </div>
-                                    <h2 class="borderes"><a href="#">DONATE NOW</a></h2>
-                                </div>
-                            </div>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- <section class="donors">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="donors_input">
-                            <h2>DONATION NOW</h2>
-                            <form action="#" method="post">
-                                <p class="amount">
-                                    <label for="usd">AMOUNT : </label>
-                                    <input type="radio" name="usd" id="usd" checked>20usd
-                                    <input type="radio" name="usd" id="usd">50usd
-                                    <input type="radio" name="usd" id="usd">100usd </p>
-                                <p class="type">
-                                    <label for="type">TYPE : </label>
-                                    <input type="radio" name="time" id="type" checked>One Time
-                                    <input type="radio" name="time" id="type">Monthly
-                                    <input type="radio" name="time" id="type">Yearly <br>
-                                </p>
-                                <h5>
-                                    <input type="text" placeholder="Name">
-                                    <input type="email" placeholder="Email">
-                                </h5>
-                                <h4>
-                                    <select>
-                                    <option>I Want To Donate For 1</option>
-                                    <option>I Want To Donate For 2</option>
-                                    <option>I Want To Donate For 3</option>
-                                </select>
-                                </h4>
-                                <input type="submit" value="DONATION NOW">
-                            </form>
-                        </div>
-                        <div class="donors_image">
-                            <h2>FEATURED DONORS</h2>
-                            <div class="donors_featured owl-carousel owl-theme">
-                                <div class="item">
-                                    <img src="../../../media/donors_featured_one.jpg" alt="">
-                                    <h3>Kenneth J. Garnica</h3>
-                                    <p>Donated Amount : <span>220 USD</span> </p>
-                                </div>
-                                <div class="item">
-                                    <img src="../../../media/donors_featured_one.jpg" alt="">
-                                    <h3>Kenneth J. Garnica</h3>
-                                    <p>Donated Amount : <span>220 USD</span> </p>
-                                </div>
-                                <div class="item">
-                                    <img src="../../../media/donors_featured_one.jpg" alt="">
-                                    <h3>Kenneth J. Garnica</h3>
-                                    <p>Donated Amount : <span>220 USD</span> </p>
-                                </div>
-                                <div class="item">
-                                    <img src="../../../media/donors_featured_one.jpg" alt="">
-                                    <h3>Kenneth J. Garnica</h3>
-                                    <p>Donated Amount : <span>220 USD</span> </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <div class="clear"></div>
         <section style="height: 100vh; background-color: #ffedbb;" class="volunteer_area">
             <h2 style="padding: 50px;">Our Volunteer</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et dolore magna aliqua. </p>
@@ -388,79 +309,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- <section class="carosal_bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="carosal_bottom_single owl-carousel owl-theme">
-                            <div class="item">
-                                <img src="../../../media/volanteer_1.jpg" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                                <h5><i class="material-icons">format_quote</i></h5>
-                                <h4>Florence M. Cofer</h4>
-                                <h6>Designer</h6>
-                            </div>
-                            <div class="item">
-                                <img src="../../../media/volanteer_2.jpg" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                                <h5><i class="material-icons">format_quote</i></h5>
-                                <h4>Florence M. Cofer</h4>
-                                <h6>Designer</h6>
-                            </div>
-                            <div class="item">
-                                <img src="../../../media/volanteer_3.jpg" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-                                <h5><i class="material-icons">format_quote</i></h5>
-                                <h4>Florence M. Cofer</h4>
-                                <h6>Designer</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <section class="letast_news">
-            <h2>latest news</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et dolore magna aliqua. </p>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 latest-news">
-                        <div class="single_news">
-                            <img src="../../../media/news_images_1.jpg" alt="">
-                            <div class="texts">
-                                <p class="date"><a href="#">30 May, 2017</a></p>
-                                <h3>Wood Work Adds Value To <br> Your Property Five</h3>
-                                <p class="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h3><a href="#">READ MORE</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 latest-news">
-                        <div class="single_news">
-                            <img src="../../../media/news_images_2.jpg" alt="">
-                            <div class="texts">
-                                <p class="date"><a href="#">30 May, 2017</a></p>
-                                <h3>Wood Work Adds Value To <br> Your Property Five</h3>
-                                <p class="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h3><a href="#">READ MORE</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 latest-news">
-                        <div class="single_news">
-                            <img src="../../../media/news_images_3.jpg" alt="">
-                            <div class="texts">
-                                <p class="date"><a href="#">30 May, 2017</a></p>
-                                <h3>Wood Work Adds Value To <br> Your Property Five</h3>
-                                <p class="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h3><a href="#">READ MORE</a></h3>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -538,7 +386,6 @@
                             <h2>HELP CHARITY</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </p>
                             <hr>
-                            <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
                         </div>
                     </div>
                     <div class="col-md-8">

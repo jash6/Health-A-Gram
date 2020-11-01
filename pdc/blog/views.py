@@ -107,6 +107,9 @@ def faq(request):
 def news(request):
     return render(request, 'blog/news.html')
 
+def contact(request):
+    return render(request, 'blog/contact.html')
+
 
 def DashboardView(request):
     donations = Donation.objects.filter(donor=request.user)

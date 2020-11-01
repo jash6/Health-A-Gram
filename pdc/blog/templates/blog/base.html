@@ -7,6 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script id="gs-sdk" src='//www.buildquickbots.com/botwidget/v3/demo/static/js/sdk.js?v=3' key="c79e3e23-b109-46ae-b3a1-803df654eb0c" ></script>
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
         <!-- Bootstrap CSS -->
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css'%}">
@@ -17,6 +23,11 @@
     <link rel="stylesheet" href="{% static 'blog/style.css'%}">
     <link rel="stylesheet" href="{% static 'blog/responsive.css'%}">
     <style>
+       
+            .goog-logo-link img {
+    display: none;
+}
+        
         .dropbtn {
             background-color: rgb(85, 85, 219);
  color: white;
@@ -85,11 +96,8 @@ display: block;
   line-height: 20px;
 }
   </style>
-        {% if title %}
-            <title>Django Blog - {{ title }}</title>
-        {% else %}
-            <title>Django Blog</title>
-        {% endif %}
+  <script id="gs-sdk" src='//www.buildquickbots.com/botwidget/v3/demo/static/js/sdk.js?v=3' key="2de8d293-c16d-42e5-ab6e-28caf5b424e7" ></script>
+            <title>Health A Gram</title>
         {% block css %}{% endblock %}
     </head>
     <body>
@@ -134,7 +142,7 @@ display: block;
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
-                            
+                            <div align="padding-right" id="google_translate_element"> </div>
                         </div>
                     </div>
                 </div>
@@ -142,7 +150,7 @@ display: block;
             <section class="header-bottom">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-md-2 col-sm-12 col-xs-12">
                             <a href="{% url 'main-home'%}">
                                 <div class="main-logo">
                                     <img style="padding: 0; height: 60px;" src="../../../media/main-logo.png" alt="">
@@ -150,17 +158,21 @@ display: block;
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="col-md-10 col-sm-12 col-xs-12">
                             <div class="menu">
                                 <ul class="nav navbar-nav">
                                     
-                                    <li class="active"><a class="nav-item nav-link" style="font-weight: 600; " href="{% url 'blog-home'%}">Find Donors</a></li>
+                                    <li class="active"><a class="nav-item nav-link" style="font-weight: 600; " href="{% url 'blog-home'%}">Donors</a></li>
                                     <li><a style="font-weight: 600; " href="{% url 'news'%}">News</a></li>
+                                    <li><a style="font-weight: 600; font-size: 20px;" href="{% url 'faq'%}">FAQ's</a></li>
+
                                     {% if user.is_authenticated %}
                                     <li><a style="font-weight: 600; " href="{% url 'dash-view'%}">Dashboard</a></li>
                                     <li><a style="font-weight: 600; " href="{% url 'recommend'%}">Recommended</a></li>
                                     <li><a style="font-weight: 600; " href="{% url 'profile' %}">Profile</a></li>
-                                    <li><a style="font-weight: 600; " href="{% url 'post-create' %}">New Post</a></li>
+                                    {% if user.profile.is_donor %}
+                                        <li><a style="font-weight: 600; " href="{% url 'post-create' %}">New Post</a></li>
+                                    {% endif %}
                                     <li><a style="font-weight: 600; " href="{% url 'logout' %}">Log Out</a></li>
                                     {% else %}
                                     <li><a style="font-weight: 600; " href="{% url 'login' %}">Log In</a></li>
