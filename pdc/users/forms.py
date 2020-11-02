@@ -30,6 +30,7 @@ class ProfileUpdateForm(forms.ModelForm):
     Hospital=forms.CharField(max_length=10, label='Nearby hospitals?')
     has_corona = forms.CharField(label='Was your COVID test positive?',widget=forms.Select(choices=PREGNANT))
     is_donor = forms.BooleanField(required=False)
+    location = forms.CharField()
 
     class Meta:
         model = Profile 

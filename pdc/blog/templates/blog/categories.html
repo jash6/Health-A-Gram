@@ -8,7 +8,7 @@
 </style>
 <h1 class='my-4' style="text-align: center;">Desired Donors</h1>
     {% if category_posts %}
-        {% for post in category_posts %}
+        {% for post in category_posts reversed %}
             <article class="media content-section">
                 <img class = "rounded-circle article-img" src="{{ post.author.profile.image.url }}">
                 <div class="media-body">

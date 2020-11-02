@@ -38,7 +38,7 @@ def PostDetailView(request,pk):
             donation.Hospital = post.author.profile.Hospital
             donation.save()
             send_mail('Health-a-gram has some great news for you',f' {request.user} ({request.user.email}) needs your help!',settings.EMAIL_HOST_USER,[f'{post.author.email}'],fail_silently=False)
-            messages.success(request, f'We have notified the NGO, thankyou for the donation')
+            messages.success(request, f'We have notified the Donor, thankyou for the using Health-a-gram')
             return redirect('dash-view')
         else:
             pass
@@ -156,10 +156,20 @@ def FilteredBloodView(request, cats):
 def recommend(request):
     category_posts = []
     posts = Post.objects.all()
+    user_bg = request.user.profile.blood_group
+    user_dis = request.user.profile.district
+
     for post in posts:
-        if post.author.profile.blood_group == request.user.profile.blood_group:
-            if post.author.profile.district == request.user.profile.district:
-                category_posts.append(post)
+        post_bg = post.author.profile.blood_group
+
+        if post.author.profile.district == user_dis:
+            if user_bg[-1] == '-' and post_bg[-1]=='-':
+                if post_bg == user_bg or post_bg == 'O-' or post_bg[0] == user_bg[0] or post_bg[0] == user_bg[-2]:
+                    category_posts.append(post)
+            elif user_bg[-1] == '+':
+                if post_bg == user_bg or post_bg[0] == 'O' or post_bg[0] == user_bg[0] or post_bg[0] == user_bg[-2]:
+                    category_posts.append(post)
+
     if len(category_posts) >= 1:
         return render(request, 'blog/categories.html', {'category_posts': category_posts})
     else:
