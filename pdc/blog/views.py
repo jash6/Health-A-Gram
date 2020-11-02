@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post,Donation
+from users.models import Profile
 from .forms import PostForm,Form
 from django.views.generic import (ListView, DetailView, CreateView,
                                   UpdateView, DeleteView
@@ -9,6 +10,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 from users.models import Profile
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 # def home(request):
 #     context = {
@@ -25,6 +28,7 @@ class PostListView(ListView):
 
 # class PostDetailView(DetailView):
 #     model = Post
+@login_required
 def PostDetailView(request,pk):
     if request.method== 'POST':
         form=Form(request.POST)
@@ -54,15 +58,44 @@ def PostDetailView(request,pk):
             })
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    form_class = PostForm
+@login_required
+def PostCreateView(request):
+    if request.method== 'POST':
+        form=PostForm(request.POST)
+        if form.is_valid():
+            form.instance.author = request.user
+            post  = form.save() 
+            post_bg = post.author.profile.blood_group
+            post_dis = post.author.profile.district
+            patients = Profile.objects.all().filter(is_donor= False)
+            for patient in patients:
+                patient_bg = patient.blood_group
 
-    
+                if patient.district == post_dis:
+                    if post_bg[-1] == '+' and patient_bg[-1]=='+':
+                        if post_bg[0] == 'O' or post_bg == patient_bg or patient_bg == 'AB+':
+                            send_mail('News from Health-a-gram, a potential donor is nearby!',f' {request.user} has entered your recommendations',settings.EMAIL_HOST_USER,[f'{patient.user.email}'],fail_silently=False)
+                    elif post_bg[-1] == '-':
+                        if post_bg[0] == 'O' or post_bg[0] == patient_bg[0] or patient_bg[:-1] == 'AB':
+                            send_mail('News from Health-a-gram, a potential donor is nearby!',f' {request.user} has entered your recommendations',settings.EMAIL_HOST_USER,[f'{patient.user.email}'],fail_silently=False)
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+            return redirect("recommend")
+    else:
+        form=PostForm()
+        context = {
+            "form": form,
+        }
+        return render(request,'blog/post_form.html',{
+                "form": form,
+            })
+
+# class PostCreateView(LoginRequiredMixin, CreateView):
+#     model = Post
+#     form_class = PostForm
+
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -131,11 +164,9 @@ def FilteredHospitalView(request, cats):
     return render(request, 'blog/categories.html', {'cats': cats, 'category_posts': category_posts})
 
 def FilteredCityView(request, cats):
-    print('random shit')
     category_posts = []
     users = Profile.objects.filter(district=cats)
     posts = Post.objects.all()
-    print(posts)
     for post in posts:
         
         if post.author.profile.district == cats:
@@ -160,14 +191,14 @@ def recommend(request):
     user_dis = request.user.profile.district
 
     for post in posts:
-        post_bg = post.author.profile.blood_group
-
         if post.author.profile.district == user_dis:
+            post_bg = post.author.profile.blood_group
+
             if user_bg[-1] == '-' and post_bg[-1]=='-':
-                if post_bg == user_bg or post_bg == 'O-' or post_bg[0] == user_bg[0] or post_bg[0] == user_bg[-2]:
+                if user_bg[0] == post_bg[0] or post_bg == 'O-' or user_bg[-2] == post_bg[0]:
                     category_posts.append(post)
             elif user_bg[-1] == '+':
-                if post_bg == user_bg or post_bg[0] == 'O' or post_bg[0] == user_bg[0] or post_bg[0] == user_bg[-2]:
+                if user_bg[0] == post_bg[0] or post_bg[0] == 'O' or user_bg[-2] == post_bg[0]:
                     category_posts.append(post)
 
     if len(category_posts) >= 1:
