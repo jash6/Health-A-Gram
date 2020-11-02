@@ -70,24 +70,23 @@ def PostCreateView(request):
             patients = Profile.objects.all().filter(is_donor= False)
             for patient in patients:
                 patient_bg = patient.blood_group
-
-                if patient.district == post_dis:
-                    if post_bg[-1] == '+' and patient_bg[-1]=='+':
-                        if post_bg[0] == 'O' or post_bg == patient_bg or patient_bg == 'AB+':
-                            send_mail('News from Health-a-gram, a potential donor is nearby!',f' {request.user} has entered your recommendations',settings.EMAIL_HOST_USER,[f'{patient.user.email}'],fail_silently=False)
-                    elif post_bg[-1] == '-':
-                        if post_bg[0] == 'O' or post_bg[0] == patient_bg[0] or patient_bg[:-1] == 'AB':
-                            send_mail('News from Health-a-gram, a potential donor is nearby!',f' {request.user} has entered your recommendations',settings.EMAIL_HOST_USER,[f'{patient.user.email}'],fail_silently=False)
-
-            return redirect("recommend")
+                if request.user != patient.user:
+                    if patient.district == post_dis:
+                        if post_bg[-1] == '+' and patient_bg[-1]=='+':
+                            if post_bg[0] == 'O' or post_bg == patient_bg or patient_bg == 'AB+':
+                                send_mail('News from Health-a-gram, a potential donor is nearby!',f' {request.user} has entered your recommendations',settings.EMAIL_HOST_USER,[f'{patient.user.email}'],fail_silently=False)
+                                messages.success(request, f'We have notified the patients')
+                        elif post_bg[-1] == '-':
+                            if post_bg[0] == 'O' or post_bg[0] == patient_bg[0] or patient_bg[:-1] == 'AB':
+                                send_mail('News from Health-a-gram, a potential donor is nearby!',f' {request.user} has entered your recommendations',settings.EMAIL_HOST_USER,[f'{patient.user.email}'],fail_silently=False)
+                                messages.success(request, f'We have notified the patients')
+                return redirect("recommend")
     else:
         form=PostForm()
         context = {
             "form": form,
         }
-        return render(request,'blog/post_form.html',{
-                "form": form,
-            })
+        return render(request,'blog/post_form.html',context)
 
 # class PostCreateView(LoginRequiredMixin, CreateView):
 #     model = Post

@@ -26,7 +26,9 @@ button.btn.btn-outline-info:hover {
               <legend class="border-bottom mb-4">Profile Info</legend>
               {{ u_form|crispy }}
               {{ p_form|crispy }}
-              {{ d_form|crispy}}
+              {% comment %} {{ d_form|crispy}} {% endcomment %}
+              <div id="div_id_city" class="form-group"> <label for="id_city" class=" requiredField">
+                City<span class="asteriskField">*</span> </label> <div class=""> <input type="text" name="city" class="textinput textInput form-control" required="" id="id_city" value={{city}}> </div>
           </fieldset>
           <div class="form-group">
               <button class="btn btn-outline-info" type="submit">Next</button>

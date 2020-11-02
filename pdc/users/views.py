@@ -4,6 +4,9 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, DetailUp
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.views.generic import (DetailView)
+from geopy.geocoders import Nominatim
+import requests
+import json
 
 def register(request):
     if request.method == 'POST':
@@ -21,6 +24,13 @@ def register(request):
 
 @login_required
 def profile(request):
+    geo_json = requests.get('https://api.ipdata.co?api-key=d452e16e908d2c0e6f9464a6fb5702c168bf59f81971a2e46c2f039d').json()
+    latitude = geo_json['latitude']
+    longitude = geo_json['longitude']
+    address = str(latitude)+", "+str(longitude)
+    geolocator = Nominatim(user_agent="views")
+    location = geolocator.reverse(address)
+    city = location.raw["address"]["city"]
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, 
@@ -34,12 +44,12 @@ def profile(request):
             return redirect('recommend')
     else:
         u_form = UserUpdateForm(instance = request.user)
-        # d_form = DetailUpdateForm(instance = request.user)
         p_form = ProfileUpdateForm(instance = request.user.profile)
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        # 'd_form': d_form,
+        'city': city,
+        'address': address,
     }
     return render(request, 'users/profile.html', context)
 
